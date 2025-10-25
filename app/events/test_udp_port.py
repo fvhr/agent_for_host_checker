@@ -1,6 +1,7 @@
 import asyncio
 import socket
 
+from events.dns import resolve_to_ip
 from events.send_event_response import send_response
 
 
@@ -25,5 +26,7 @@ async def udp_event(data: dict, personal_token: str) -> None:
     port = data["data"]["check_port"]
     response = await check_udp_port(host, port)
     task_uuid = data["data"]["task_uuid"]
-    response_data = {"task_uuid": task_uuid, "response": response, "agent_token": personal_token}
+    ip_address = await resolve_to_ip(host)
+    response_data = {"ip_address": ip_address, "task_uuid": task_uuid, "response": response,
+                     "agent_token": personal_token}
     asyncio.create_task(send_response(response_data))
