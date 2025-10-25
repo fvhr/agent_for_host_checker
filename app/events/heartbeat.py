@@ -51,10 +51,12 @@ async def send_heartbeat(data: dict) -> None:
         try:
             data = json.dumps(data)
             async with session.post(HEARTBEAT_URL, json=data) as response:
+                response_text = await response.text()
                 if response.status != 200:
                     logger.error(f"heartbeat failed with status {response.status}")
                 else:
                     logger.info(f"heartbeat success with status {response.status}")
+                logger.debug(f"Full response: {response_text}")
 
         except aiohttp.ClientError as e:
             logger.error(f"Запрос heartbeat ошибка: {e}")
