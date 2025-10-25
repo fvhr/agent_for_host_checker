@@ -23,13 +23,17 @@ def get_country_by_ip(ip: str) -> Tuple[str, str]:
             country_code = response.country.iso_code
             return country_name, country_code
     except Exception:
+        logger.print_exception()
         return "", ""
 
+print(get_country_by_ip("79.137.192.43"))
 
 def get_my_info():
     hostname = socket.gethostname()
     ip = socket.gethostbyname(hostname)
     country_name, country_code = get_country_by_ip(ip)
+    print(country_name, country_code)
+    print(ip)
     return {
         "ip": ip,
         "country_name": country_name,
@@ -50,12 +54,9 @@ async def send_heartbeat(data: dict) -> None:
     async with aiohttp.ClientSession() as session:
         try:
             async with session.post(HEARTBEAT_URL, json=data) as response:
-                response_text = await response.text()
                 if response.status != 200:
                     logger.error(f"heartbeat failed with status {response.status}")
                 else:
                     logger.info(f"heartbeat success with status {response.status}")
-                logger.debug(f"Full response: {response_text}")
-
         except aiohttp.ClientError as e:
             logger.error(f"Запрос heartbeat ошибка: {e}")
