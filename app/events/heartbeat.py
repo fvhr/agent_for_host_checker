@@ -1,4 +1,5 @@
 import asyncio
+import json
 import os
 import socket
 from typing import Tuple
@@ -34,6 +35,7 @@ def get_my_info():
         "country_name": country_name,
         "hostname": hostname,
         "country_code": country_code,
+        "token": settings.TOKEN,
     }
 
 
@@ -47,6 +49,7 @@ async def heartbeat():
 async def send_heartbeat(data: dict) -> None:
     async with aiohttp.ClientSession() as session:
         try:
+            data = json.dumps(data)
             async with session.post(HEARTBEAT_URL, json=data) as response:
                 if response.status != 200:
                     logger.error(f"heartbeat failed with status {response.status}")
