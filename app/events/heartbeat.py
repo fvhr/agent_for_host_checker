@@ -1,5 +1,4 @@
 import asyncio
-import json
 import os
 import socket
 from typing import Tuple
@@ -43,7 +42,6 @@ def get_my_info():
 
 async def heartbeat():
     while True:
-        print(settings.AGENT_UUID)
         my_info = get_my_info()
         await send_heartbeat(my_info)
         await asyncio.sleep(5)
