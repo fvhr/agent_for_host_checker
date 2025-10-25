@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 
 from environs import Env
 
-from utils import get_or_create_agent_uuid
+from settings.utils import get_or_create_agent_uuid
 
 env = Env()
 env.read_env()

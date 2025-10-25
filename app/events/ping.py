@@ -3,7 +3,6 @@ from typing import List, Union
 
 from ping3 import ping
 
-from events import settings
 from events.send_event_response import send_response
 
 
@@ -35,9 +34,9 @@ async def multi_ping(
     return {"results": results, "packet_loss": packet_loss}
 
 
-async def ping_event(data: dict) -> None:
+async def ping_event(data: dict, personal_token: str) -> None:
     host = data["data"]["host"]
     task_uuid = data["data"]["task_uuid"]
     response = await multi_ping(host)
-    response_data = {"task_uuid": task_uuid, "response": response, "agent_token": settings.PERSONAL_TOKEN}
+    response_data = {"task_uuid": task_uuid, "response": response, "agent_token": personal_token}
     asyncio.create_task(send_response(response_data))

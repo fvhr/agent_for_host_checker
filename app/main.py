@@ -1,10 +1,9 @@
 import asyncio
+
+from connections import settings
 from connections.redis.redis_connection import RedisConnection
 from events.heartbeat import heartbeat
 from utils import handle_event
-from settings import Settings
-
-settings = Settings()
 
 
 async def main():

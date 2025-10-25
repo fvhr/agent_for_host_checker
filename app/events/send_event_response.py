@@ -1,6 +1,6 @@
 import aiohttp
 
-from events import settings
+from connections import settings
 from logger import logger
 
 RESPONSE_URL = f"{settings.HTTP_SCHEMA}://{settings.BACKEND_NAME}:{settings.BACKEND_PORT}/api/v1/agent/response"
