@@ -22,7 +22,6 @@ async def traceroute_icmplib(target: str, max_hops: int = 30, timeout: float = 2
             interval=0.01,
             timeout=timeout,
             max_hops=max_hops,
-            fast_mode=True
         )
 
         results = []
