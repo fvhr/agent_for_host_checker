@@ -2,3 +2,4 @@ environs==14.3.0
 pytz==2025.2
 aiohttp==3.13.1
 geoip2==5.1.0
+aiofiles==25.1.0
