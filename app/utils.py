@@ -21,15 +21,14 @@ def convert_to_moscow_time(value=None):
     return None
 
 
-async def get_or_create_agent_id() -> str:
+def get_or_create_agent_uuid() -> str:
     os.makedirs(AGENT_DATA_DIR, exist_ok=True)
 
     if os.path.exists(AGENT_ID_FILE):
-        async with aiofiles.open(AGENT_ID_FILE, "r") as f:
-            agent_uuid = await f.read()
-        return agent_uuid.strip()
+        with open(AGENT_ID_FILE, "r") as f:
+            return f.read().strip()
     else:
-        new_uuid = str(uuid.uuid4())
-        async with aiofiles.open(AGENT_ID_FILE, "w") as f:
-            await f.write(new_uuid)
-        return new_uuid
+        new_id = str(uuid.uuid4())
+        with open(AGENT_ID_FILE, "w") as f:
+            f.write(new_id)
+        return new_id

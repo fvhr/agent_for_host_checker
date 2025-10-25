@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 
 from environs import Env
 
-from utils import get_or_create_agent_id
+from utils import get_or_create_agent_uuid
 
 env = Env()
 env.read_env()
@@ -19,4 +19,4 @@ class Settings:
 
     TOKEN: str = field(default_factory=lambda: env('TOKEN'))
 
-    AGENT_UUID: str = field(default_factory=get_or_create_agent_id)
+    AGENT_UUID: str = field(default_factory=get_or_create_agent_uuid)
