@@ -1,0 +1,6 @@
+2025-10-25 04:14:22,936 - logger - CRITICAL - 2025-10-25 07:14:22.910409 C:\Users\rtkachenko\PycharmProjects\host_check_agent\app\events\heartbeat.py:17 - module 'geoip2' has no attribute 'database'
+2025-10-25 04:16:32,627 - logger - CRITICAL - 2025-10-25 07:16:32.603071 C:\Users\rtkachenko\PycharmProjects\host_check_agent\app\events\heartbeat.py:17 - module 'geoip2' has no attribute 'Reader'
+2025-10-25 04:17:41,073 - logger - CRITICAL - 2025-10-25 07:17:41.048228 C:\Users\rtkachenko\PycharmProjects\host_check_agent\app\events\heartbeat.py:17 - [Errno 2] No such file or directory: b'geo/GeoLite2-Country.mmdb'
+2025-10-25 04:18:13,829 - logger - CRITICAL - 2025-10-25 07:18:13.803218 C:\Users\rtkachenko\PycharmProjects\host_check_agent\app\events\heartbeat.py:17 - [Errno 2] No such file or directory: b'geo/GeoLite2-Country.mmdb'
+2025-10-25 04:18:53,737 - logger - CRITICAL - 2025-10-25 07:18:53.711993 C:\Users\rtkachenko\PycharmProjects\host_check_agent\app\events\heartbeat.py:17 - [Errno 2] No such file or directory: b'geo/GeoLite2-Country.mmdb'
+2025-10-25 04:19:19,418 - logger - CRITICAL - 2025-10-25 07:19:19.393497 C:\Users\rtkachenko\PycharmProjects\host_check_agent\app\events\heartbeat.py:17 - [Errno 2] No such file or directory: b'app/geo/GeoLite2-Country.mmdb'

@@ -1,0 +1,7 @@
+.idea/
+__pycache__/
+.env
+venv/
+.venv/
+app/app.log
+docker-compose.yaml
