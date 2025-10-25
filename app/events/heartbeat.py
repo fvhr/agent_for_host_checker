@@ -26,14 +26,11 @@ def get_country_by_ip(ip: str) -> Tuple[str, str]:
         logger.print_exception()
         return "", ""
 
-print(get_country_by_ip("79.137.192.43"))
 
 def get_my_info():
     hostname = socket.gethostname()
     ip = socket.gethostbyname(hostname)
     country_name, country_code = get_country_by_ip(ip)
-    print(country_name, country_code)
-    print(ip)
     return {
         "ip": ip,
         "country_name": country_name,
