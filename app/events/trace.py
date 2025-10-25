@@ -1,14 +1,14 @@
 import asyncio
 
 from icmplib import traceroute as icmplib_traceroute, resolve
-from typing import List, Dict, Any
+from typing import Dict, Any
 
 from events.dns import resolve_to_ip
 from events.send_event_response import send_response
 from logger import logger
 
 
-async def traceroute_icmplib(target: str, max_hops: int = 30, timeout: float = 2.0) -> Dict[str, Any]:
+async def traceroute_icmplib(target: str, max_hops: int = 15, timeout: float = 1.0) -> Dict[str, Any]:
     try:
         if not resolve(target):
             return {

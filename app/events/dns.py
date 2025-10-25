@@ -20,7 +20,7 @@ async def resolve_to_ip(host: str) -> str | None:
     try:
         result = await resolver.query(host, "A")
         if result:
-            return result[0].host
+            return result[-1].host
     except aiodns.error.DNSError:
         pass
     except Exception:
@@ -43,7 +43,6 @@ async def dns_resolve_all(domain: str) -> dict:
         try:
             results[record_type] = await task
         except aiodns.error.DNSError as e:
-            # Обрабатываем ошибки по типу, но не прерываем выполнение
             if e.args[0] == 1:
                 results[record_type] = {"error": "No records found"}
             elif e.args[0] == 4:
