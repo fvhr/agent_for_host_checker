@@ -3,6 +3,7 @@ import asyncio
 from connections import settings
 from connections.redis.redis_connection import RedisConnection
 from events.heartbeat import heartbeat
+from utils import handle_event
 
 
 async def main():
@@ -13,7 +14,7 @@ async def main():
         result = await redis.brpop(queue_name, timeout=30)
         if result:
             _, task_data = result
-            print(task_data)
+            asyncio.create_task(handle_event(task_data))
 
 
 if __name__ == '__main__':

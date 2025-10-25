@@ -4,3 +4,4 @@ aiohttp==3.13.1
 geoip2==5.1.0
 aiofiles==25.1.0
 redis==7.0.0
+ping3==5.1.5

@@ -1,9 +1,12 @@
+import asyncio
 import datetime
 import os
 import uuid
-
-import aiofiles
+from typing import Tuple, List, Union
+from ping3 import ping
 import pytz
+
+from events.ping import ping_event
 
 AGENT_DATA_DIR = "/etc/checker-agent"
 AGENT_ID_FILE = os.path.join(AGENT_DATA_DIR, "agent.uuid")
@@ -32,3 +35,10 @@ def get_or_create_agent_uuid() -> str:
         with open(AGENT_ID_FILE, "w") as f:
             f.write(new_id)
         return new_id
+
+
+
+
+async def handle_event(data: dict) -> None:
+    if data.get("type") == "ping":
+        asyncio.create_task(ping_event(data))
