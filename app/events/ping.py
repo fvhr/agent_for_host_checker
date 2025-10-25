@@ -3,7 +3,7 @@ from typing import List, Union
 
 from ping3 import ping
 
-from connections import settings
+from events import settings
 from events.send_event_response import send_response
 
 

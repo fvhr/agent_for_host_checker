@@ -6,7 +6,7 @@ from typing import Tuple
 import aiohttp
 import geoip2.database
 
-from connections import settings
+from events import settings
 from logger import logger
 
 HEARTBEAT_URL = f"{settings.HTTP_SCHEMA}://{settings.BACKEND_NAME}:{settings.BACKEND_PORT}/api/v1/heartbeat"
