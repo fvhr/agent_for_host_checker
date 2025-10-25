@@ -18,6 +18,8 @@ async def dns_resolve_all(domain: str) -> dict:
         try:
             results[record_type] = await task
         except Exception as e:
+            if type(e) is tuple:
+                _, e = e
             results[record_type] = {"error": str(e)}
 
     return results
