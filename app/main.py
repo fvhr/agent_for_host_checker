@@ -1,4 +1,5 @@
 import asyncio
+import json
 
 from connections import settings
 from connections.redis.redis_connection import RedisConnection
@@ -14,6 +15,7 @@ async def main():
         result = await redis.brpop(queue_name, timeout=30)
         if result:
             _, task_data = result
+            task_data = json.loads(task_data)
             asyncio.create_task(handle_event(task_data))
 
 
