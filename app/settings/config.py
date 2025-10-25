@@ -19,4 +19,4 @@ class Settings:
 
     TOKEN: str = field(default_factory=lambda: env('TOKEN'))
 
-    AGENT_UUID: str = field(default_factory=get_or_create_agent_uuid)
+    PERSONAL_TOKEN: str = field(default_factory=get_or_create_agent_uuid)

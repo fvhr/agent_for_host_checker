@@ -37,6 +37,7 @@ def get_my_info():
         "hostname": hostname,
         "country_code": country_code,
         "token": settings.TOKEN,
+        "personal_token": settings.PERSONAL_TOKEN,
     }
 
 
