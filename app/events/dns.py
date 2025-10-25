@@ -17,10 +17,16 @@ async def dns_resolve_all(domain: str) -> dict:
     for record_type, task in tasks.items():
         try:
             results[record_type] = await task
+        except aiodns.error.DNSError as e:
+            # Обрабатываем ошибки по типу, но не прерываем выполнение
+            if e.args[0] == 1:
+                results[record_type] = {"error": "No records found"}
+            elif e.args[0] == 4:
+                results[record_type] = {"error": "Domain does not exist"}
+            else:
+                results[record_type] = {"error": f"DNS error: {e}"}
         except Exception as e:
-            if type(e) is tuple:
-                _, e = e
-            results[record_type] = {"error": str(e)}
+            results[record_type] = {"error": f"Unexpected error: {e}"}
 
     return results
 
