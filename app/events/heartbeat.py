@@ -12,7 +12,7 @@ from logger import logger
 
 HEARTBEAT_URL = f"{settings.HTTP_SCHEMA}://{settings.BACKEND_NAME}:{settings.BACKEND_PORT}/api/v1/heartbeat"
 
-DB_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), "geo\GeoLite2-Country.mmdb")
+DB_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), "geo/GeoLite2-Country.mmdb")
 
 
 def get_country_by_ip(ip: str) -> Tuple[str, str]:
