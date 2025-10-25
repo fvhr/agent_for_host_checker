@@ -8,7 +8,7 @@ from events.send_event_response import send_response
 from logger import logger
 
 
-async def traceroute_icmplib(target: str, max_hops: int = 15, timeout: float = 1.0) -> Dict[str, Any]:
+async def traceroute_icmplib(target: str, max_hops: int = 5, timeout: float = 0.5) -> Dict[str, Any]:
     try:
         if not resolve(target):
             return {
