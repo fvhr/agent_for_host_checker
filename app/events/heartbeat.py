@@ -49,7 +49,6 @@ async def heartbeat():
 async def send_heartbeat(data: dict) -> None:
     async with aiohttp.ClientSession() as session:
         try:
-            data = json.dumps(data)
             async with session.post(HEARTBEAT_URL, json=data) as response:
                 response_text = await response.text()
                 if response.status != 200:
