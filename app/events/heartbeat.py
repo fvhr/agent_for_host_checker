@@ -11,12 +11,13 @@ from logger import logger
 
 HEARTBEAT_URL = f"{settings.HTTP_SCHEMA}://{settings.BACKEND_NAME}:{settings.BACKEND_PORT}/api/v1/heartbeat"
 
-DB_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), "geo/GeoLite2-Country.mmdb")
+DB_PATH_COUNTRY = os.path.join(os.path.dirname(os.path.realpath(__file__)), "geo/GeoLite2-Country.mmdb")
+DB_PATH_CITY = os.path.join(os.path.dirname(os.path.realpath(__file__)), "geo/GeoLite2-City.mmdb")
 
 
 def get_country_by_ip(ip: str) -> Tuple[str, str]:
     try:
-        with geoip2.database.Reader(DB_PATH) as reader:
+        with geoip2.database.Reader(DB_PATH_COUNTRY) as reader:
             response = reader.country(ip)
             country_name = response.country.name
             country_code = response.country.iso_code
@@ -26,10 +27,21 @@ def get_country_by_ip(ip: str) -> Tuple[str, str]:
         return "", ""
 
 
+def get_city_by_ip(ip: str) -> str:
+    try:
+        with geoip2.database.Reader(DB_PATH_CITY) as reader:
+            response = reader.city(ip)
+            return response.city.name
+    except Exception:
+        logger.print_exception()
+        return ""
+
+
 def get_my_info():
     hostname = socket.gethostname()
     ip = socket.gethostbyname(hostname)
     country_name, country_code = get_country_by_ip(ip)
+    city = get_city_by_ip(ip)
     return {
         "ip": ip,
         "country_name": country_name,
@@ -37,6 +49,7 @@ def get_my_info():
         "country_code": country_code,
         "token": settings.TOKEN,
         "personal_token": settings.PERSONAL_TOKEN,
+        "city": city,
     }
 
 

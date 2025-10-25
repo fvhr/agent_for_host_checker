@@ -10,7 +10,6 @@ async def main():
     redis = await RedisConnection.get_redis()
     queue_name = f"agent:{settings.TOKEN}:{settings.PERSONAL_TOKEN}:tasks"
     while True:
-        print(queue_name)
         result = await redis.brpop(queue_name, timeout=30)
         if result:
             _, task_data = result

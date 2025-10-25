@@ -4,3 +4,4 @@
 2025-10-25 04:18:13,829 - logger - CRITICAL - 2025-10-25 07:18:13.803218 C:\Users\rtkachenko\PycharmProjects\host_check_agent\app\events\heartbeat.py:17 - [Errno 2] No such file or directory: b'geo/GeoLite2-Country.mmdb'
 2025-10-25 04:18:53,737 - logger - CRITICAL - 2025-10-25 07:18:53.711993 C:\Users\rtkachenko\PycharmProjects\host_check_agent\app\events\heartbeat.py:17 - [Errno 2] No such file or directory: b'geo/GeoLite2-Country.mmdb'
 2025-10-25 04:19:19,418 - logger - CRITICAL - 2025-10-25 07:19:19.393497 C:\Users\rtkachenko\PycharmProjects\host_check_agent\app\events\heartbeat.py:17 - [Errno 2] No such file or directory: b'app/geo/GeoLite2-Country.mmdb'
+2025-10-25 17:01:04,936 - logger - CRITICAL - 2025-10-25 20:01:02.895834 C:\Users\rtkachenko\PycharmProjects\host_check_agent\app\events\heartbeat.py:33 - The city method cannot be used with the GeoLite2-Country database
