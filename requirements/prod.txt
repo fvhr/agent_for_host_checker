@@ -6,3 +6,4 @@ aiofiles==25.1.0
 redis==7.0.0
 ping3==5.1.5
 icmplib==3.0.4
+aiodns==3.5.0
