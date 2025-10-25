@@ -1,6 +1,9 @@
+import asyncio
+
 from icmplib import traceroute as icmplib_traceroute, resolve
 from typing import List, Dict, Any
 
+from events.send_event_response import send_response
 from logger import logger
 
 
@@ -57,5 +60,7 @@ async def traceroute_icmplib(target: str, max_hops: int = 30, timeout: float = 2
 
 async def trace_event(data: dict, personal_token: str) -> None:
     host = data["data"]["host"]
-    res = await traceroute_icmplib(host)
-    print(res)
+    response = await traceroute_icmplib(host)
+    task_uuid = data["data"]["task_uuid"]
+    response_data = {"task_uuid": task_uuid, "response": response, "agent_token": personal_token}
+    asyncio.create_task(send_response(response_data))
