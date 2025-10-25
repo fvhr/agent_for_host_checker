@@ -43,3 +43,12 @@ async def http_event(data: dict, personal_token: str) -> None:
     task_uuid = data["data"]["task_uuid"]
     response_data = {"task_uuid": task_uuid, "response": response, "agent_token": personal_token}
     asyncio.create_task(send_response(response_data))
+
+
+async def https_event(data: dict, personal_token: str) -> None:
+    host = data["data"]["host"]
+    port = data["data"]["check_port"]
+    response = await check_http(host, port, schema='https://')
+    task_uuid = data["data"]["task_uuid"]
+    response_data = {"task_uuid": task_uuid, "response": response, "agent_token": personal_token}
+    asyncio.create_task(send_response(response_data))
